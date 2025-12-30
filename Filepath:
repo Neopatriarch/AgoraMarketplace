@@ -1,0 +1,86 @@
+// Filepath: src/services/agoraService.ts
+// Author: AI
+// v1.0.0
+
+import { SimplePool, Event, generateSecretKey, getPublicKey, Filter } from 'nostr-tools';
+
+/**
+ * Interface to enhance type safety for expected Marketplace listings.
+ * A Nostr event with kind 31922 is expected to represent a listing.
+ */
+export interface ListingEvent extends Event {}
+
+// A read-only list of public relays for the PoC.
+const RELAYS: string[] = [
+  'wss://relay.damus.io',
+  'wss://nos.lol',
+  'wss://relay.snort.social',
+  'wss://nostr-pub.wellorder.net',
+];
+
+// Initialize the SimplePool instance. It will be reused for all network operations.
+const pool = new SimplePool();
+
+/**
+ * Fetches public marketplace listings from the Nostr network.
+ *
+ * This function adheres to the critical constraint of using the nostr-tools v2.19.4 API.
+ * It uses `pool.querySync()` to perform a synchronous query, blocking until the initial
+ * set of events is received from the relays. It ensures robust resource management
+ * by closing connections in a `finally` block.
+ *
+ * @returns {Promise<ListingEvent[]>} A promise that resolves with an array of fetched Nostr events.
+ */
+export async function fetchPublicListings(): Promise<ListingEvent[]> {
+  const filter: Filter = {
+    kinds: [31922], // Kind 31922 is often used for classifieds/marketplace listings (NIP-99)
+    limit: 50, // Limit to 50 events for a quick PoC load
+  };
+
+  let fetchedEvents: ListingEvent[] = [];
+
+  try {
+    // The `SimplePool` API in nostr-tools v2.19.4 uses `querySync` for a blocking, one-time query.
+    // This method connects, queries, waits for results, and then we close the connection.
+    // It returns an array of events.
+    const events = pool.querySync(RELAYS, filter);
+    fetchedEvents = [...events]; // Convert the iterable to an array
+  } catch (error) {
+    console.error('Error fetching public listings from Nostr:', error);
+    // Re-throw the error to be handled by the caller (App.tsx)
+    throw new Error('Failed to connect to Nostr relays or decode events.');
+  } finally {
+    // CRITICAL: Ensure the connections are closed to prevent resource leaks on the relays.
+    closeConnections();
+  }
+
+  return fetchedEvents;
+}
+
+/**
+ * Generates a new Nostr key pair (private and public).
+ *
+ * @returns {{ privateKey: string, publicKey: string }} The newly generated key pair in hex format.
+ */
+export function createIdentity(): { privateKey: string, publicKey: string } {
+  const privateKey = generateSecretKey(); // Generates a 32-byte secret key (nsec equivalent)
+  const publicKey = getPublicKey(privateKey); // Derives the public key (npub equivalent)
+
+  return {
+    privateKey: Buffer.from(privateKey).toString('hex'), // Convert Uint8Array to hex string for common usage
+    publicKey,
+  };
+}
+
+/**
+ * Closes all active connections in the SimplePool.
+ * Essential for robust network programming.
+ */
+export function closeConnections(): void {
+  // pool.close() terminates all WebSocket connections managed by the pool.
+  // In v2.19.4, it's called without arguments to close all connections.
+  pool.close();
+}
+
+// Filepath: src/services/agoraService.ts
+// v1.0.0

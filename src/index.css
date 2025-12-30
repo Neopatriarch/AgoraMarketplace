@@ -1,0 +1,161 @@
+/* Filepath: src/index.css */
+/* v10.1.0 - Fixed event card text color for readability */
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+}
+
+/* --- Mobile-First Responsive Design --- */
+
+/* Container adjustments */
+#root {
+  padding: 1rem; /* Less padding on small screens */
+}
+
+/* Header adjustments */
+header h1 {
+  font-size: 2em; /* Smaller font for mobile */
+}
+
+header nav {
+  margin-top: 0.5rem;
+}
+
+/* Event Card adjustments */
+.meetup-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #fff;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.card-content {
+  padding: 16px;
+  flex-grow: 1;
+  color: #333; /* --- FIX: Set a dark text color for card content --- */
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  color: #555; /* --- FIX: Set a dark text color for card footer --- */
+}
+
+/* Form adjustments for mobile */
+form input,
+form textarea {
+  width: 98%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px; /* Prevents zoom on iOS */
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Profile Page adjustments */
+.profile-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.profile-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.profile-qr {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+/* --- Grid for larger screens --- */
+@media (min-width: 768px) {
+  #root {
+    padding: 2rem;
+  }
+
+  header h1 {
+    font-size: 3.2em;
+  }
+
+  .meetups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+  }
+
+  form button {
+    width: auto;
+  }
+}
+
+/* Filepath: src/index.css */
+/* v10.1.0 - Fixed event card text color for readability */
