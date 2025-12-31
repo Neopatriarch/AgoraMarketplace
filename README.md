@@ -1,74 +1,62 @@
-# React + TypeScript + Vite
+# Agora
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A decentralized event platform built on Nostr.
 
-Currently, two official plugins are available:
+Decentralized. Permissionless. Unstoppable.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## React Compiler
+Agora is a censorship-resistant social network designed to empower freedom of association, speech, and exchange. It is built on the Nostr protocol, ensuring that the events and communities you create can never be deplatformed or taken down.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Core Principles
 
-## Expanding the ESLint configuration
+*   **Decentralized:** There is no central server or company controlling the network. Your data is replicated across a resilient, distributed network.
+*   **Permissionless:** Anyone, anywhere can create an event or a community without asking for permission or fitting within corporate guidelines.
+*   **Unstoppable:** By leveraging the Nostr protocol, Agora is fundamentally resistant to censorship and takedowns.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Key Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+*   **Uncancellable Events:** Create events with confidence that they cannot be removed or censored by a central authority.
+*   **Censorship-Proof Communities:** Build and manage communities that you truly own.
+*   **Nostr Native:** Built from the ground up on Nostr, leveraging its simplicity and power for decentralized identity and social graphs.
+*   **Open Source:** The project is fully open source, allowing for transparency and community contributions.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> **Note:** This project is currently in active development. For the latest setup instructions, please refer to the [Development Guide](./DEVELOPMENT.md).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+*   Node.js (v18 or higher)
+*   npm or yarn
+*   An Android device or emulator for testing
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# AgoraMarketplace
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/agora.git
+    cd agora
+    ```
+
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+
+3.  Run the app:
+    ```bash
+    npm run dev
+    ```
+
+## How It Works
+
+Agora uses Nostr events as the data layer for all platform activity. User profiles, event details, and community posts are all signed and published to the Nostr relay network, making them immutable and globally accessible without a central point of failure.
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).

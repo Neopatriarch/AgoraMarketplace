@@ -83,7 +83,7 @@ const ProfilePage: React.FC<{ userPublicKey: string }> = ({ userPublicKey }) => 
         tags: [],
         content: JSON.stringify(profileContent),
       };
-      signedEvent = nostrTools.finalizeEvent(eventPayload, storedPrivateKey);
+      signedEvent = nostrTools.finalizeEvent(eventPayload, nostrTools.utils.hexToBytes(storedPrivateKey));
     } else if (window.nostr) {
       setSaveStatus('Waiting for you to approve the signature in your extension...');
       const eventPayload = {
