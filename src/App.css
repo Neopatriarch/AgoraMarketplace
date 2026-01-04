@@ -40,3 +40,29 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Home Header Layout */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.home-header h2 {
+  margin: 0;
+}
+
+.globe-icon-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.globe-icon-button:hover {
+  background-color: #f0f0f0;
+}
